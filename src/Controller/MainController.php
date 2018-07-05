@@ -10,8 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Undocumented class
@@ -27,6 +26,14 @@ class MainController extends Controller
 
     public function index(Request $request)
     {    
+        if (!$this->_fixerIOService->configured())
+        {
+            return new Response(
+                '<html><body>Please configure API key first! config/service.yaml</body></html>'
+            );  
+        }
+
+
         $cur = new CurrencyObject($this->_fixerIOService);        
 
         $currencies = $this->_fixerIOService->symbols();

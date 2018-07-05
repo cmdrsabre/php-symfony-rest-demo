@@ -18,6 +18,11 @@ class FixerIOService
         $this->_httpClient  = new \GuzzleHttp\Client();
     }
 
+    public function configured()
+    {
+        return $this->_apiKey !== "";
+    }
+
     public function getErrorCode()
     {
         return ($this->error != null ? $this->error->code : 0);
