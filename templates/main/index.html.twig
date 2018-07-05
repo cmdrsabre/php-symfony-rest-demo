@@ -1,0 +1,41 @@
+{# templates/main/index.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="style.css">
+<title>Exchange Rates</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Exchange rates</h1>
+        </div>
+        <div class="row">
+        {% for flashMessage in app.session.flashbag.get('error') %}
+
+        <div class="alert alert-danger" role="alert">
+            {{ flashMessage }}
+        </div>
+            
+        {% endfor %}
+        </div>        
+        <div class="row">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div class="row">
+            Target Amount: {{ target_amount }}
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
